@@ -18,13 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 public class UserDaoServiceImpl {
 
-    public static List<User> user = new LinkedList<>();
-    static{
-
-        user.add(new User(1, "Shahzad", LocalDate.now().minusYears(29)));
-        user.add(new User(2, "Zeba", LocalDate.now().minusYears(31)));
-        user.add(new User(3, "Shahbaz", LocalDate.now().minusYears(33)));
-    }
 
 
 }

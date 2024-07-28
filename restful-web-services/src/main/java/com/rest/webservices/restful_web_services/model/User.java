@@ -1,20 +1,19 @@
 package com.rest.webservices.restful_web_services.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "user_table")
+@Entity(name = "user_details")
+@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonFilter("someFilter")
 public class User {
 
     @Id
@@ -22,5 +21,15 @@ public class User {
     private int id;
     private String name;
     private LocalDate birthDate;
+
+    public User(int id, String name, LocalDate birthDate) {
+        this.id = id;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
 
 }
